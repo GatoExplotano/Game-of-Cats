@@ -43,9 +43,9 @@ let score = 0;
 const scoreDisplay = document.getElementById("score");
 
 const catData = [
-    { src: "data/Cat.defoult.dance.gif", points: 2, sound: "sfx/Click.defoult.mp3" },
-    { src: "data/Cat.fire.dance.gif", points: 10, sound: "sfx/Click.fire.mp3" },
-    { src: "data/Cat.holy.dance.gif", points: 25, sound: "sfx/Click.holy.mp3" }
+    { src: "Cat.defoult.dance.gif", points: 2, sound: "Click.defoult.mp3" },
+    { src: "Cat.fire.dance.gif", points: 10, sound: "Click.fire.mp3" },
+    { src: "Cat.holy.dance.gif", points: 25, sound: "Click.holy.mp3" }
 ];
 
 function spawnCat() {
@@ -74,7 +74,7 @@ function spawnCat() {
         cat.remove();
 
         if (score >= 101) {
-            window.location.href = "data/jumpscare.html";
+            window.location.href = "jumpscare.html";
         }
     });
 
@@ -90,3 +90,4 @@ spawnCat();
 
 </body>
 </html>
+
