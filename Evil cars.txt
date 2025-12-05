@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cat Clicker Game</title>
+<style>
+    body {
+        background: white;
+        margin: 0;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+    }
+
+    #scoreBox {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        padding: 15px 25px;
+        font-size: 24px;
+        background: rgba(0,0,0,0.05);
+        border: 2px solid black;
+        border-radius: 8px;
+    }
+
+    .cat {
+        position: absolute;
+        width: 200px;   /* CATS ARE DEFINITELY BIGGER NOW */
+        height: auto;
+        cursor: pointer;
+        user-select: none;
+    }
+</style>
+</head>
+<body>
+
+<div id="scoreBox">Score: 0</div>
+
+<script>
+// Cat image files + points
+const cats = [
+    { src: "Cat.defoult.dance.gif?v=2", points: 2 },
+    { src: "Cat.fire.dance.gif?v=2", points: 10 },
+    { src: "Cat.holy.dance.gif?v=2", points: 25 }
+];
+
+let score = 0;
+const scoreBox = document.getElementById("scoreBox");
+
+function spawnCat() {
+    const catData = cats[Math.floor(Math.random() * cats.length)];
+    const cat = document.createElement("img");
+
+    cat.src = catData.src;
+    cat.className = "cat";
+
+    cat.style.left = Math.random() * (window.innerWidth - 200) + "px";
+    cat.style.top = Math.random() * (window.innerHeight - 200) + "px";
+
+    document.body.appendChild(cat);
+
+    cat.addEventListener("click", () => {
+        score += catData.points;
+        scoreBox.textContent = "Score: " + score;
+        cat.remove();
+
+        // Jumpscare trigger
+        if (score >= 101) {
+            window.location.href = "jumpscare.html";
+        }
+    });
+
+    // Remove after 2 sec
+    setTimeout(() => {
+        if (cat.parentNode) cat.remove();
+    }, 2000);
+}
+
+// Fast spawn
+setInterval(spawnCat, 400);
+</script>
+
+</body>
+</html>
